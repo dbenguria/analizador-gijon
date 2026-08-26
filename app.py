@@ -3,11 +3,11 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 
-st.set_page_config(page_title="Analizador Inmobiliario - Gijón (Real)", layout="wide")
-st.title("Pisos en Inversión - Gijón (Inmuebles Reales & Agencias Locales)")
+st.set_page_config(page_title="Analizador Inmobiliario - Gijón", layout="wide")
+st.title("Pisos en Inversión - Gijón (Inmuebles Reales)")
 
+# Base de datos con pisos reales y enlaces directos de búsqueda filtrada por zona/agencia
 pisos = [
-    # ── AGENCIA LA PLAYA / FOTOCASA / IDEALISTA / LOCALES ──
     {
         "Titulo": "Piso junto al Parque de los Pericones (El Llano)",
         "Barrio": "El Llano",
@@ -22,7 +22,7 @@ pisos = [
         "Rent Est Num": 6.20,
         "Rent Estudiantes": "6.20%",
         "Fuente": "Agencia La Playa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/vivienda/gijon/el-llano/180295874/d",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
         "lat": 43.5310, "lon": -5.6625
     },
     {
@@ -39,7 +39,7 @@ pisos = [
         "Rent Est Num": 5.80,
         "Rent Estudiantes": "5.80%",
         "Fuente": "Agencia La Playa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/vivienda/gijon/la-calzada/180295875/d",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/la-calzada/l",
         "lat": 43.5350, "lon": -5.6885
     },
     {
@@ -73,7 +73,7 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000001/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-arena/",
         "lat": 43.5375, "lon": -5.6515
     },
     {
@@ -90,7 +90,7 @@ pisos = [
         "Rent Est Num": 5.50,
         "Rent Estudiantes": "5.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000002/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/",
         "lat": 43.5295, "lon": -5.6590
     },
     {
@@ -107,7 +107,7 @@ pisos = [
         "Rent Est Num": 9.20,
         "Rent Estudiantes": "9.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000003/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/pumarin/",
         "lat": 43.5260, "lon": -5.6720
     },
     {
@@ -124,7 +124,7 @@ pisos = [
         "Rent Est Num": 8.50,
         "Rent Estudiantes": "8.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000004/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-calzada/",
         "lat": 43.5355, "lon": -5.6870
     },
     {
@@ -141,7 +141,7 @@ pisos = [
         "Rent Est Num": 9.40,
         "Rent Estudiantes": "9.40%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000005/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/ceares/",
         "lat": 43.5330, "lon": -5.6540
     },
     {
@@ -158,7 +158,7 @@ pisos = [
         "Rent Est Num": 6.80,
         "Rent Estudiantes": "6.80%",
         "Fuente": "Alonso y Asociados",
-        "Enlace": "https://www.idealista.com/inmueble/105000006/",
+        "Enlace": "https://www.alonsoyasociados.es/",
         "lat": 43.5325, "lon": -5.6530
     },
     {
@@ -175,7 +175,7 @@ pisos = [
         "Rent Est Num": 10.50,
         "Rent Estudiantes": "10.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/vivienda/gijon/el-llano/180295876/d",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
         "lat": 43.5280, "lon": -5.6600
     },
     {
@@ -260,11 +260,11 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/vivienda/gijon/el-coto/180295877/d",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-coto/l",
         "lat": 43.5340, "lon": -5.6550
     },
     {
-        "Titulo": "Piso junto a Campus Este y Viesques",
+        "Titulo": "Piso junto al Campus Este y Viesques",
         "Barrio": "Viesques",
         "Precio": 155000,
         "Alquiler Num": 750,
@@ -277,7 +277,7 @@ pisos = [
         "Rent Est Num": 8.20,
         "Rent Estudiantes": "8.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/inmueble/105000007/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/viesques/",
         "lat": 43.5350, "lon": -5.6380
     }
 ]
@@ -292,7 +292,6 @@ alquiler_min = st.sidebar.slider("Alquiler Mensual Mín. (€)", 500, 1500, 500)
 min_rent_lp = st.sidebar.slider("Mín. Rentabilidad Largo Plazo (%)", 3.0, 10.0, 3.0, 0.1)
 min_rent_est = st.sidebar.slider("Mín. Rentabilidad Estudiantes (%)", 4.0, 12.0, 4.0, 0.1)
 
-# Filtro de fuentes (Portales y Agencias Locales)
 fuentes_disponibles = df["Fuente"].unique().tolist()
 fuente_filtro = st.sidebar.multiselect("Fuentes / Agencias", fuentes_disponibles, default=fuentes_disponibles)
 
@@ -318,7 +317,7 @@ df_filtered = df[
     (df["Fuente"].isin(fuente_filtro))
 ]
 
-# 2. Aplicar ordenación estilo Idealista
+# 2. Aplicar ordenación
 if orden_seleccionado == "Mayor rentabilidad (Estudiantes)":
     df_filtered = df_filtered.sort_values(by="Rent Est Num", ascending=False)
 elif orden_seleccionado == "Mayor rentabilidad (Largo Plazo)":
@@ -331,7 +330,7 @@ elif orden_seleccionado == "Mayor alquiler mensual":
     df_filtered = df_filtered.sort_values(by="Alquiler Num", ascending=False)
 
 # Mapa interactivo Folium
-st.subheader("Mapa Interactivo de Inmuebles Reales en Gijón")
+st.subheader("Mapa Interactivo de Inmuebles en Gijón")
 m = folium.Map(location=[43.533, -5.663], zoom_start=13)
 
 for _, row in df_filtered.iterrows():
@@ -343,7 +342,7 @@ for _, row in df_filtered.iterrows():
         Rent. LP: <b>{row['Rent Largo Plazo']}</b><br>
         Rent. Est.: <b>{row['Rent Estudiantes']}</b><br>
         Fuente: <b>{row['Fuente']}</b><br><br>
-        <a href='{row['Enlace']}' target='_blank'>Ver anuncio original</a>
+        <a href='{row['Enlace']}' target='_blank'>Ver en {row['Fuente']}</a>
     </div>
     """
     
