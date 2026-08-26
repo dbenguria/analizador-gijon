@@ -6,7 +6,7 @@ from streamlit_folium import st_folium
 st.set_page_config(page_title="Analizador Inmobiliario - Gijón", layout="wide")
 st.title("Pisos en Inversión - Gijón (Inmuebles Reales)")
 
-# Base de datos con enlaces 100% verificados a la página principal de búsqueda de cada portal/agencia
+# Base de datos con enlaces estructurados por zona para evitar 404
 pisos = [
     {
         "Titulo": "Piso junto al Parque de los Pericones (El Llano)",
@@ -22,7 +22,7 @@ pisos = [
         "Rent Est Num": 6.20,
         "Rent Estudiantes": "6.20%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
         "lat": 43.5310, "lon": -5.6625
     },
     {
@@ -39,7 +39,7 @@ pisos = [
         "Rent Est Num": 5.80,
         "Rent Estudiantes": "5.80%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/la-calzada/l",
         "lat": 43.5350, "lon": -5.6885
     },
     {
@@ -73,11 +73,11 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-arena/",
         "lat": 43.5375, "lon": -5.6515
     },
     {
-        "Titulo": "Piso junto a Av. Schulz (Espacio 94)",
+        "Titulo": "Piso junto al Parque de los Pericones (El Llano)",
         "Barrio": "El Llano",
         "Precio": 325000,
         "Alquiler Num": 1100,
@@ -90,7 +90,7 @@ pisos = [
         "Rent Est Num": 5.50,
         "Rent Estudiantes": "5.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/",
         "lat": 43.5295, "lon": -5.6590
     },
     {
@@ -107,7 +107,7 @@ pisos = [
         "Rent Est Num": 9.20,
         "Rent Estudiantes": "9.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/pumarin/",
         "lat": 43.5260, "lon": -5.6720
     },
     {
@@ -124,7 +124,7 @@ pisos = [
         "Rent Est Num": 8.50,
         "Rent Estudiantes": "8.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-calzada/",
         "lat": 43.5355, "lon": -5.6870
     },
     {
@@ -141,7 +141,7 @@ pisos = [
         "Rent Est Num": 9.40,
         "Rent Estudiantes": "9.40%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/ceares/",
         "lat": 43.5330, "lon": -5.6540
     },
     {
@@ -175,7 +175,7 @@ pisos = [
         "Rent Est Num": 10.50,
         "Rent Estudiantes": "10.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
         "lat": 43.5280, "lon": -5.6600
     },
     {
@@ -260,7 +260,7 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-coto/l",
         "lat": 43.5340, "lon": -5.6550
     },
     {
@@ -277,7 +277,7 @@ pisos = [
         "Rent Est Num": 8.20,
         "Rent Estudiantes": "8.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
+        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/viesques/",
         "lat": 43.5350, "lon": -5.6380
     }
 ]
@@ -342,7 +342,7 @@ for _, row in df_filtered.iterrows():
         Rent. LP: <b>{row['Rent Largo Plazo']}</b><br>
         Rent. Est.: <b>{row['Rent Estudiantes']}</b><br>
         Fuente: <b>{row['Fuente']}</b><br><br>
-        <a href='{row['Enlace']}' target='_blank'>Ir a {row['Fuente']}</a>
+        <a href='{row['Enlace']}' target='_blank'>Filtrar en {row['Fuente']}</a>
     </div>
     """
     
@@ -371,5 +371,5 @@ for _, row in df_filtered.iterrows():
         st.write(f"**Rent. Largo Plazo:** {row['Rent Largo Plazo']}")
         st.write(f"**Rent. Estudiantes:** {row['Rent Estudiantes']}")
     with col3:
-        st.link_button(f"Ver en {row['Fuente']}", row['Enlace'])
+        st.link_button(f"Buscar {row['Barrio']}", row['Enlace'])
     st.divider()
