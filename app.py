@@ -31,7 +31,7 @@ pisos = [
 
 df = pd.DataFrame(pisos)
 
-# ── FILTROS AVANZADOS EN LA BARRA LATERAL ──
+# ── BARRA LATERAL: FILTROS Y ORDENACIÓN ──
 st.sidebar.header("Filtros de Inversión")
 
 precio_max = st.sidebar.slider("Precio Compra Máx. (€)", 50000, 200000, 160000)
@@ -41,7 +41,20 @@ min_rent_est = st.sidebar.slider("Mín. Rentabilidad Estudiantes (%)", 5.0, 15.0
 
 fuente_filtro = st.sidebar.multiselect("Portal de Origen", df["Fuente"].unique(), default=df["Fuente"].unique())
 
-# Aplicar todos los filtros al DataFrame
+st.sidebar.markdown("---")
+st.sidebar.header("Ordenar por")
+orden_seleccionado = st.sidebar.selectbox(
+    "Criterio de ordenación",
+    [
+        "Mayor rentabilidad (Estudiantes)",
+        "Mayor rentabilidad (Largo Plazo)",
+        "Precio: más bajo primero",
+        "Precio: más alto primero",
+        "Mayor alquiler mensual"
+    ]
+)
+
+# 1. Aplicar filtros
 df_filtered = df[
     (df["Precio"] <= precio_max) & 
     (df["Alquiler Num"] >= alquiler_min) & 
@@ -49,6 +62,18 @@ df_filtered = df[
     (df["Rent Est Num"] >= min_rent_est) & 
     (df["Fuente"].isin(fuente_filtro))
 ]
+
+# 2. Aplicar ordenación estilo Idealista
+if orden_seleccionado == "Mayor rentabilidad (Estudiantes)":
+    df_filtered = df_filtered.sort_values(by="Rent Est Num", ascending=False)
+elif orden_seleccionado == "Mayor rentabilidad (Largo Plazo)":
+    df_filtered = df_filtered.sort_values(by="Rent LP Num", ascending=False)
+elif orden_seleccionado == "Precio: más bajo primero":
+    df_filtered = df_filtered.sort_values(by="Precio", ascending=True)
+elif orden_seleccionado == "Precio: más alto primero":
+    df_filtered = df_filtered.sort_values(by="Precio", ascending=False)
+elif orden_seleccionado == "Mayor alquiler mensual":
+    df_filtered = df_filtered.sort_values(by="Alquiler Num", ascending=False)
 
 # Mapa interactivo Folium
 st.subheader("Mapa Interactivo de Inmuebles en Gijón")
@@ -77,7 +102,7 @@ for _, row in df_filtered.iterrows():
 
 st_folium(m, width=1100, height=450)
 
-# Lista detallada debajo
+# Lista detallada debajo (ordenada)
 st.subheader(f"Lista de Inmuebles Filtrados ({len(df_filtered)} resultados)")
 for _, row in df_filtered.iterrows():
     col1, col2, col3 = st.columns([3, 2, 1])
