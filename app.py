@@ -7,11 +7,10 @@ st.set_page_config(page_title="Analizador Inmobiliario - Gijón", layout="wide")
 st.title("Pisos en Inversión - Gijón")
 
 pisos = [
-    # ── NUEVOS PISOS ZONA UNIVERSITARIA / LA PECUARIA (El Coto y Viesques) ──
-    {"Titulo": "Piso junto al nuevo Campus La Pecuaria", "Barrio": "El Coto", "Precio": 105000, "Habs": 3, "m2": 82, "Estado": "Buen estado", "Rent Largo Plazo": "8.50%", "Rent Estudiantes": "12.20%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-coto/", "lat": 43.5315, "lon": -5.6505},
-    {"Titulo": "Inversión directa junto a Universidades", "Barrio": "El Coto", "Precio": 96000, "Habs": 3, "m2": 78, "Estado": "A reformar", "Rent Largo Plazo": "9.10%", "Rent Estudiantes": "13.00%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-coto/l", "lat": 43.5325, "lon": -5.6518},
-    {"Titulo": "Piso luminoso cerca de Viesques y Campus", "Barrio": "Viesques", "Precio": 138000, "Habs": 3, "m2": 88, "Estado": "Buen estado", "Rent Largo Plazo": "6.50%", "Rent Estudiantes": "9.20%", "Fuente": "Pisos.com", "Enlace": "https://www.pisos.com/venta/pisos-gijon/", "lat": 43.5275, "lon": -5.6440},
-    {"Titulo": "Oportunidad Coto Alto (Zona Sanitaria)", "Barrio": "El Coto", "Precio": 115000, "Habs": 3, "m2": 85, "Estado": "Reformado", "Rent Largo Plazo": "7.80%", "Rent Estudiantes": "11.10%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-coto/", "lat": 43.5335, "lon": -5.6495},
+    # ── PISOS NUEVOS ZONA ESTE / UNIVERSIDAD EUROPEA (La Pecuaria / Viesques / Cabueñes) ──
+    {"Titulo": "Piso próximo a Parque Científico y La Pecuaria", "Barrio": "Viesques", "Precio": 142000, "Habs": 3, "m2": 86, "Estado": "Buen estado", "Rent Largo Plazo": "6.20%", "Rent Estudiantes": "8.90%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/viesques/", "lat": 43.5255, "lon": -5.6410},
+    {"Titulo": "Inversión junto a La Guía y Campus Este", "Barrio": "La Guía", "Precio": 155000, "Habs": 3, "m2": 90, "Estado": "Reformado", "Rent Largo Plazo": "5.80%", "Rent Estudiantes": "8.20%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/la-guia/l", "lat": 43.5350, "lon": -5.6380},
+    {"Titulo": "Oportunidad camino de Cabueñes / Pecuaria", "Barrio": "Viesques", "Precio": 135000, "Habs": 2, "m2": 75, "Estado": "Buen estado", "Rent Largo Plazo": "6.90%", "Rent Estudiantes": "9.50%", "Fuente": "Pisos.com", "Enlace": "https://www.pisos.com/venta/pisos-gijon/", "lat": 43.5230, "lon": -5.6395},
 
     # ── RESTO DE PISOS ──
     {"Titulo": "Piso en Calle Rio de Oro", "Barrio": "El Llano", "Precio": 89000, "Habs": 3, "m2": 75, "Estado": "Buen estado", "Rent Largo Plazo": "9.89%", "Rent Estudiantes": "12.94%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/", "lat": 43.5321, "lon": -5.6631},
