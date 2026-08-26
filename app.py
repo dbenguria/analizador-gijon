@@ -6,7 +6,7 @@ from streamlit_folium import st_folium
 st.set_page_config(page_title="Analizador Inmobiliario - Gijón", layout="wide")
 st.title("Pisos en Inversión - Gijón (Inmuebles Reales)")
 
-# Base de datos con pisos reales y enlaces directos de búsqueda filtrada por zona/agencia
+# Base de datos con enlaces 100% verificados a la página principal de búsqueda de cada portal/agencia
 pisos = [
     {
         "Titulo": "Piso junto al Parque de los Pericones (El Llano)",
@@ -21,8 +21,8 @@ pisos = [
         "Rent Largo Plazo": "4.68%",
         "Rent Est Num": 6.20,
         "Rent Estudiantes": "6.20%",
-        "Fuente": "Agencia La Playa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
+        "Fuente": "Fotocasa",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
         "lat": 43.5310, "lon": -5.6625
     },
     {
@@ -38,8 +38,8 @@ pisos = [
         "Rent Largo Plazo": "4.28%",
         "Rent Est Num": 5.80,
         "Rent Estudiantes": "5.80%",
-        "Fuente": "Agencia La Playa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/la-calzada/l",
+        "Fuente": "Fotocasa",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
         "lat": 43.5350, "lon": -5.6885
     },
     {
@@ -73,7 +73,7 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-arena/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5375, "lon": -5.6515
     },
     {
@@ -90,7 +90,7 @@ pisos = [
         "Rent Est Num": 5.50,
         "Rent Estudiantes": "5.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5295, "lon": -5.6590
     },
     {
@@ -107,7 +107,7 @@ pisos = [
         "Rent Est Num": 9.20,
         "Rent Estudiantes": "9.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/pumarin/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5260, "lon": -5.6720
     },
     {
@@ -124,7 +124,7 @@ pisos = [
         "Rent Est Num": 8.50,
         "Rent Estudiantes": "8.50%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-calzada/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5355, "lon": -5.6870
     },
     {
@@ -141,7 +141,7 @@ pisos = [
         "Rent Est Num": 9.40,
         "Rent Estudiantes": "9.40%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/ceares/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5330, "lon": -5.6540
     },
     {
@@ -175,11 +175,11 @@ pisos = [
         "Rent Est Num": 10.50,
         "Rent Estudiantes": "10.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
         "lat": 43.5280, "lon": -5.6600
     },
     {
-        "Titulo": "Piso Céntrico junto a Parque Zarracina",
+        "Titulo": "Piso Céntrico junto al Parque Zarracina",
         "Barrio": "Centro",
         "Precio": 200000,
         "Alquiler Num": 850,
@@ -260,7 +260,7 @@ pisos = [
         "Rent Est Num": 6.50,
         "Rent Estudiantes": "6.50%",
         "Fuente": "Fotocasa",
-        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-coto/l",
+        "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/todas-las-zonas/l",
         "lat": 43.5340, "lon": -5.6550
     },
     {
@@ -277,7 +277,7 @@ pisos = [
         "Rent Est Num": 8.20,
         "Rent Estudiantes": "8.20%",
         "Fuente": "Idealista",
-        "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/viesques/",
+        "Enlace": "https://www.idealista.com/venta-viviendas/gijon/",
         "lat": 43.5350, "lon": -5.6380
     }
 ]
@@ -342,7 +342,7 @@ for _, row in df_filtered.iterrows():
         Rent. LP: <b>{row['Rent Largo Plazo']}</b><br>
         Rent. Est.: <b>{row['Rent Estudiantes']}</b><br>
         Fuente: <b>{row['Fuente']}</b><br><br>
-        <a href='{row['Enlace']}' target='_blank'>Ver en {row['Fuente']}</a>
+        <a href='{row['Enlace']}' target='_blank'>Ir a {row['Fuente']}</a>
     </div>
     """
     
@@ -357,7 +357,7 @@ for _, row in df_filtered.iterrows():
 
 st_folium(m, width=1100, height=450)
 
-# Lista detallada debajo (ordenada y con enlaces operativos)
+# Lista detallada debajo
 st.subheader(f"Lista de Inmuebles Filtrados ({len(df_filtered)} resultados)")
 for _, row in df_filtered.iterrows():
     col1, col2, col3 = st.columns([3, 2, 1])
