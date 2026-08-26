@@ -53,10 +53,18 @@ for _, row in df_filtered.iterrows():
         <a href='{row['Enlace']}' target='_blank'>Ver en {row['Fuente']}</a>
     </div>
     """
+    
+    # Tooltip mejorado para que al pasar el ratón se vea toda la información importante
+    tooltip_text = (
+        f"{row['Titulo']}\n"
+        f"Precio: {row['Precio']:,} € | Alquiler: {row['Alquiler Mensual']}\n"
+        f"Rent. Largo Plazo: {row['Rent Largo Plazo']} | Rent. Estudiantes: {row['Rent Estudiantes']}"
+    )
+
     folium.Marker(
         location=[row["lat"], row["lon"]],
         popup=folium.Popup(popup_text, max_width=250),
-        tooltip=f"{row['Titulo']} - {row['Precio']:,} €",
+        tooltip=tooltip_text,
         icon=folium.Icon(color="red", icon="home", prefix="fa")
     ).add_to(m)
 
