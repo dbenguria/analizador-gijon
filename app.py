@@ -7,6 +7,13 @@ st.set_page_config(page_title="Analizador Inmobiliario - Gijón", layout="wide")
 st.title("Pisos en Inversión - Gijón")
 
 pisos = [
+    # ── NUEVOS PISOS ZONA UNIVERSITARIA / LA PECUARIA (El Coto y Viesques) ──
+    {"Titulo": "Piso junto al nuevo Campus La Pecuaria", "Barrio": "El Coto", "Precio": 105000, "Habs": 3, "m2": 82, "Estado": "Buen estado", "Rent Largo Plazo": "8.50%", "Rent Estudiantes": "12.20%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-coto/", "lat": 43.5315, "lon": -5.6505},
+    {"Titulo": "Inversión directa junto a Universidades", "Barrio": "El Coto", "Precio": 96000, "Habs": 3, "m2": 78, "Estado": "A reformar", "Rent Largo Plazo": "9.10%", "Rent Estudiantes": "13.00%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-coto/l", "lat": 43.5325, "lon": -5.6518},
+    {"Titulo": "Piso luminoso cerca de Viesques y Campus", "Barrio": "Viesques", "Precio": 138000, "Habs": 3, "m2": 88, "Estado": "Buen estado", "Rent Largo Plazo": "6.50%", "Rent Estudiantes": "9.20%", "Fuente": "Pisos.com", "Enlace": "https://www.pisos.com/venta/pisos-gijon/", "lat": 43.5275, "lon": -5.6440},
+    {"Titulo": "Oportunidad Coto Alto (Zona Sanitaria)", "Barrio": "El Coto", "Precio": 115000, "Habs": 3, "m2": 85, "Estado": "Reformado", "Rent Largo Plazo": "7.80%", "Rent Estudiantes": "11.10%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-coto/", "lat": 43.5335, "lon": -5.6495},
+
+    # ── RESTO DE PISOS ──
     {"Titulo": "Piso en Calle Rio de Oro", "Barrio": "El Llano", "Precio": 89000, "Habs": 3, "m2": 75, "Estado": "Buen estado", "Rent Largo Plazo": "9.89%", "Rent Estudiantes": "12.94%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/", "lat": 43.5321, "lon": -5.6631},
     {"Titulo": "Piso en Calle Eleuterio Quintanilla", "Barrio": "El Llano", "Precio": 129900, "Habs": 2, "m2": 80, "Estado": "Reformado", "Rent Largo Plazo": "8.20%", "Rent Estudiantes": "11.10%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/el-llano/l", "lat": 43.5310, "lon": -5.6645},
     {"Titulo": "Piso luminoso cerca de Begoña", "Barrio": "Centro", "Precio": 115000, "Habs": 3, "m2": 80, "Estado": "A reformar", "Rent Largo Plazo": "7.65%", "Rent Estudiantes": "10.02%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/centro/", "lat": 43.5392, "lon": -5.6601},
@@ -18,7 +25,6 @@ pisos = [
     {"Titulo": "Piso ideal inversión La Calzada", "Barrio": "La Calzada", "Precio": 72000, "Habs": 3, "m2": 70, "Estado": "A reformar", "Rent Largo Plazo": "10.50%", "Rent Estudiantes": "13.80%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/la-calzada/", "lat": 43.5348, "lon": -5.6880},
     {"Titulo": "Oportunidad económica Pumarín", "Barrio": "Pumarín", "Precio": 79900, "Habs": 3, "m2": 72, "Estado": "Buen estado", "Rent Largo Plazo": "9.95%", "Rent Estudiantes": "13.10%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/pumarin/l", "lat": 43.5270, "lon": -5.6710},
     {"Titulo": "Piso reformado cerca de Severo Ochoa", "Barrio": "Pumarín", "Precio": 95000, "Habs": 2, "m2": 65, "Estado": "Reformado", "Rent Largo Plazo": "8.84%", "Rent Estudiantes": "11.36%", "Fuente": "Pisos.com", "Enlace": "https://www.pisos.com/venta/pisos-gijon/", "lat": 43.5245, "lon": -5.6735},
-    {"Titulo": "Vivienda amplia en El Coto", "Barrio": "El Coto", "Precio": 110000, "Habs": 3, "m2": 82, "Estado": "Buen estado", "Rent Largo Plazo": "8.18%", "Rent Estudiantes": "10.90%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-coto/", "lat": 43.5330, "lon": -5.6530},
     {"Titulo": "Piso junto a Av. Argentina", "Barrio": "La Calzada", "Precio": 84000, "Habs": 2, "m2": 68, "Estado": "Buen estado", "Rent Largo Plazo": "9.28%", "Rent Estudiantes": "11.78%", "Fuente": "Fotocasa", "Enlace": "https://www.fotocasa.es/es/comprar/viviendas/gijon/la-calzada/l", "lat": 43.5372, "lon": -5.6915},
     {"Titulo": "Piso vistas al puerto Natahoyu", "Barrio": "Natahoyu", "Precio": 105000, "Habs": 2, "m2": 64, "Estado": "Reformado", "Rent Largo Plazo": "7.42%", "Rent Estudiantes": "9.71%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-natahoyu/", "lat": 43.5410, "lon": -5.6780},
     {"Titulo": "Piso alto y soleado San José", "Barrio": "El Llano", "Precio": 99000, "Habs": 3, "m2": 78, "Estado": "Buen estado", "Rent Largo Plazo": "9.09%", "Rent Estudiantes": "12.12%", "Fuente": "Idealista", "Enlace": "https://www.idealista.com/buscar/venta-viviendas/gijon/el-llano/", "lat": 43.5302, "lon": -5.6655}
@@ -70,5 +76,4 @@ for _, row in df_filtered.iterrows():
         st.write(f"**Rent. Estudiantes (Por Hab.):** {row['Rent Estudiantes']}")
     with col3:
         st.link_button(f"Ver en {row['Fuente']}", row['Enlace'])
-    st.divider()
     st.divider()
